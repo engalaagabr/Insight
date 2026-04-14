@@ -1,5 +1,9 @@
 # Insight - AI-Powered Data Analytics Platform
 
+<p align="center">
+  <img src="assets/images/Screenshot.png" alt="Insight Dashboard" width="90%" />
+</p>
+
 Insight is a full-stack analytics application that transforms raw CSV files into cleaned datasets, statistical outputs, visual summaries, and AI-generated business insights. The system combines a FastAPI backend pipeline with a Next.js frontend dashboard to provide an end-to-end analytics workflow for non-technical and technical users.
 
 ## Table of Contents
@@ -140,19 +144,8 @@ The platform uses a decoupled client-server architecture:
 ├── .env
 ├── .env.example
 ├── .gitignore
-├── assts/
-│   ├── 00_START_HERE.md
-│   ├── bmw_global_sales_2018_2025.csv
-│   ├── DELIVERABLES.md
-│   ├── DELIVERY_SUMMARY.md
-│   ├── DEPLOYMENT_REPORT.md
-│   ├── notes.txt
-│   ├── PACKAGE_COMPLETE.txt
-│   ├── PRE_DEPLOYMENT_CHECKLIST.md
-│   ├── QUICK_START_DEPLOYMENT.md
-│   ├── README_DEPLOYMENT_INDEX.md
-│   ├── RENDER_DEPLOYMENT.md
-│   └── VERCEL_DEPLOYMENT.md
+├── assets/
+│   ├── images/
 ├── backend/
 │   ├── .env.example
 │   ├── data_pipeline.py
