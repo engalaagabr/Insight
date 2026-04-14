@@ -646,12 +646,3 @@ Contributions are welcome and should follow a predictable engineering workflow.
 - Preserve environment-variable-based configuration.
 - Avoid introducing hardcoded secrets, URLs, or credentials.
 
----
-
-## 15. License
-
-No `LICENSE` file is currently present in the repository.
-
-Until a license is explicitly added by the project owner, treat this codebase as **all rights reserved**.
-
-For open-source distribution, add a license file (for example, MIT, Apache-2.0, or GPL) and update this section accordingly.
