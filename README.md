@@ -390,8 +390,8 @@ If unset, fallback defaults to `http://127.0.0.1:8000`.
 ### 1) Clone repository
 
 ```bash
-git clone <YOUR_REPOSITORY_URL>
-cd "Ai Agent"
+git clone https://github.com/engalaagabr/Insight.git
+cd "Insight"
 ```
 
 ### 2) Backend setup
