@@ -16,13 +16,11 @@ Insight is a full-stack analytics application that transforms raw CSV files into
 6. [Frontend Documentation](#6-frontend-documentation)
 7. [Installation and Local Development](#7-installation-and-local-development)
 8. [Environment Variables](#8-environment-variables)
-9. [Deployment](#9-deployment)
-10. [Security Considerations](#10-security-considerations)
-11. [Error Handling and Debugging](#11-error-handling-and-debugging)
-12. [Performance and Scalability](#12-performance-and-scalability)
-13. [Future Improvements](#13-future-improvements)
-14. [Contributing](#14-contributing)
-15. [License](#15-license)
+9. [Security Considerations](#9-security-considerations)
+10. [Error Handling and Debugging](#10-error-handling-and-debugging)
+11. [Performance and Scalability](#11-performance-and-scalability)
+12. [Future Improvements](#12-future-improvements)
+13. [Contributing](#13-contributing)
 
 ---
 
@@ -483,77 +481,7 @@ NEXT_PUBLIC_API_URL=http://localhost:8000
 
 ---
 
-## 9. Deployment
-
-### Deployment topology
-
-- Backend: Render Web Service
-- Frontend: Vercel Project
-
-### Backend deployment (Render)
-
-1. Create a new Render Web Service connected to the repository.
-2. Set runtime/build/start:
-
-```text
-Environment: Python 3.11
-Build Command: pip install -r backend/requirements.txt
-Start Command: cd backend && uvicorn main:app --host 0.0.0.0 --port 10000
-```
-
-Recommended hardened variant:
-
-```text
-Start Command: cd backend && uvicorn main_production:app --host 0.0.0.0 --port 10000
-```
-
-3. Configure environment variables in Render:
-
-```env
-GOOGLE_API_KEY=<your_key>
-CORS_ORIGINS=https://<your-vercel-domain>
-LOG_LEVEL=INFO
-MAX_FILE_SIZE_MB=50
-OUTPUT_DIR=outputs
-CLEANUP_HOURS=24
-```
-
-4. Validate with health endpoint:
-
-```bash
-curl https://<your-render-domain>/health/
-```
-
-### Frontend deployment (Vercel)
-
-1. Import repository into Vercel.
-2. Set project root directory to `frontend/`.
-3. Configure environment variable:
-
-```env
-NEXT_PUBLIC_API_URL=https://<your-render-domain>
-```
-
-4. Build and deploy (Vercel defaults are compatible):
-
-```text
-Install Command: npm install
-Build Command: npm run build
-Start Command: npm run start
-```
-
-5. Open deployed frontend and execute CSV upload verification.
-
-### Post-deployment integration checklist
-
-- Backend `/health/` returns `ok`
-- Frontend can call `/analyze/`
-- No browser CORS errors
-- Download endpoints return generated artifacts
-
----
-
-## 10. Security Considerations
+## 9. Security Considerations
 
 - Do not commit real API keys to version control.
 - Use platform-managed encrypted env vars (Render/Vercel settings).
@@ -565,7 +493,7 @@ Start Command: npm run start
 
 ---
 
-## 11. Error Handling and Debugging
+## 10. Error Handling and Debugging
 
 ### Common issues and resolutions
 
@@ -588,7 +516,7 @@ Start Command: npm run start
 
 ---
 
-## 12. Performance and Scalability
+## 11. Performance and Scalability
 
 ### Current limitations
 
@@ -614,7 +542,7 @@ Start Command: npm run start
 
 ---
 
-## 13. Future Improvements
+## 12. Future Improvements
 
 - Authentication/authorization and per-user workspaces
 - Persistent analysis history in relational or document database
@@ -627,7 +555,7 @@ Start Command: npm run start
 
 ---
 
-## 14. Contributing
+## 13. Contributing
 
 Contributions are welcome and should follow a predictable engineering workflow.
 
