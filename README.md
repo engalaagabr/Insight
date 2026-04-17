@@ -62,6 +62,10 @@ Many teams spend significant time on repetitive data preparation and first-pass 
 
 ## 2. Architecture
 
+<p align="center">
+  <img src="assets/images/insight_architecture.png" alt="Insight Architecture" width="90%" />
+</p>
+
 ### Architectural style
 
 The platform uses a decoupled client-server architecture:
