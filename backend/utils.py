@@ -1,4 +1,19 @@
 import json
+import numpy as np
+
+
+class NumpyEncoder(json.JSONEncoder):
+    """Custom JSON encoder for NumPy types"""
+    def default(self, obj):
+        if isinstance(obj, (np.int64, np.int32, np.int16, np.int8)):
+            return int(obj)
+        if isinstance(obj, (np.float64, np.float32, np.float16)):
+            return float(obj)
+        if isinstance(obj, np.ndarray):
+            return obj.tolist()
+        if isinstance(obj, (np.bool_,)):
+            return bool(obj)
+        return super(NumpyEncoder, self).default(obj)
 
 
 # ---------------- ROBUST JSON PARSER ----------------
@@ -45,7 +60,7 @@ JSON FORMAT:
 }}
 
 DATA ANALYSIS:
-{json.dumps(analysis, ensure_ascii=False)}
+{json.dumps(analysis, ensure_ascii=False, cls=NumpyEncoder)}
 """
 
     try:

@@ -12,7 +12,7 @@ from fastapi.responses import FileResponse
 from dotenv import load_dotenv
 
 from data_pipeline import load_and_validate, clean_dataframe, analyze_dataframe
-from utils import generate_insights_dynamic as generate_insights
+from utils import generate_insights_dynamic as generate_insights, NumpyEncoder
 
 from langchain_community.chat_models import ChatOllama
 
@@ -232,7 +232,7 @@ async def analyze(file: UploadFile = File(...)):
         # Save report
         logger.debug(f"Saving report: {report_json_path}")
         with open(report_json_path, "w", encoding="utf-8") as report_file:
-            json.dump(response_payload, report_file, ensure_ascii=False, indent=2)
+            json.dump(response_payload, report_file, ensure_ascii=False, indent=2, cls=NumpyEncoder)
 
         logger.info(f"Analysis completed successfully: {analysis_id}")
         
