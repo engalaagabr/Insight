@@ -12,7 +12,7 @@ from fastapi.responses import FileResponse
 from dotenv import load_dotenv
 
 from data_pipeline import load_and_validate, clean_dataframe, analyze_dataframe
-from utils import generate_insights_dynamic as generate_insights, NumpyEncoder
+from utils import generate_insights_dynamic as generate_insights, NumpyEncoder, sanitize_for_json
 
 from langchain_community.chat_models import ChatOllama
 
@@ -228,6 +228,9 @@ async def analyze(file: UploadFile = File(...)):
                 "report_json": f"/download/report/{analysis_id}",
             },
         }
+
+        # Sanitize response for JSON compliance (handle NaN, Inf)
+        response_payload = sanitize_for_json(response_payload)
 
         # Save report
         logger.debug(f"Saving report: {report_json_path}")

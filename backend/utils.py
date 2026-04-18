@@ -1,19 +1,40 @@
 import json
+import math
 import numpy as np
 
 
 class NumpyEncoder(json.JSONEncoder):
-    """Custom JSON encoder for NumPy types"""
+    """Custom JSON encoder for NumPy types and handling non-compliant floats"""
     def default(self, obj):
         if isinstance(obj, (np.int64, np.int32, np.int16, np.int8)):
             return int(obj)
         if isinstance(obj, (np.float64, np.float32, np.float16)):
+            if np.isnan(obj) or np.isinf(obj):
+                return None
             return float(obj)
         if isinstance(obj, np.ndarray):
             return obj.tolist()
         if isinstance(obj, (np.bool_,)):
             return bool(obj)
         return super(NumpyEncoder, self).default(obj)
+
+
+def sanitize_for_json(data):
+    """Recursively replace NaN, Inf, and -Inf with None for JSON compliance"""
+    if isinstance(data, dict):
+        return {k: sanitize_for_json(v) for k, v in data.items()}
+    elif isinstance(data, list):
+        return [sanitize_for_json(v) for v in data]
+    elif isinstance(data, float):
+        if math.isnan(data) or math.isinf(data):
+            return None
+    elif isinstance(data, (np.float64, np.float32, np.float16)):
+        if np.isnan(data) or np.isinf(data):
+            return None
+        return float(data)
+    elif isinstance(data, (np.int64, np.int32, np.int16, np.int8)):
+        return int(data)
+    return data
 
 
 # ---------------- ROBUST JSON PARSER ----------------
